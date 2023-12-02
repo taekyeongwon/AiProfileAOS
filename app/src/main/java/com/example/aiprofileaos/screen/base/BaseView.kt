@@ -9,7 +9,6 @@ abstract class BaseView<T: BaseViewModel>: AppCompatActivity() {
         var clickable = true
     }
 
-    abstract val layoutResId: Int
     abstract val viewModel: T
 
     abstract fun initView()
@@ -18,8 +17,6 @@ abstract class BaseView<T: BaseViewModel>: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        if(layoutResId != -1) setContentView(layoutResId)
 
         initView()
         initObserver()
