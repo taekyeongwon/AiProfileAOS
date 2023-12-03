@@ -1,7 +1,7 @@
 package com.example.aiprofileaos.core.util
 
 import android.view.View
-import com.example.aiprofileaos.screen.base.BaseView
+import com.example.aiprofileaos.ui.base.BaseView
 
 class OnSingleClickListener(private val clickListener: (View) -> Unit): View.OnClickListener {
     companion object {

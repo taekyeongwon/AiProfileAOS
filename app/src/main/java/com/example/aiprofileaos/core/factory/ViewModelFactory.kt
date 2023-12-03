@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
-import com.example.aiprofileaos.screen.main.MainModelImpl
-import com.example.aiprofileaos.screen.main.MainViewModel
+import com.example.aiprofileaos.data.local.MainModelImpl
+import com.example.aiprofileaos.ui.main.MainViewModel
 import java.lang.IllegalArgumentException
 
 @Suppress("UNCHECKED_CAST")

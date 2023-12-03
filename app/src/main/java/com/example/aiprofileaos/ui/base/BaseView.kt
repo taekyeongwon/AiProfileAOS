@@ -1,4 +1,4 @@
-package com.example.aiprofileaos.screen.base
+package com.example.aiprofileaos.ui.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

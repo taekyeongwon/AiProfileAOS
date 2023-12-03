@@ -1,10 +1,11 @@
-package com.example.aiprofileaos.screen.main
+package com.example.aiprofileaos.ui.main
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
-import com.example.aiprofileaos.screen.base.BaseViewModel
+import com.example.aiprofileaos.data.local.MainModel
+import com.example.aiprofileaos.ui.base.BaseViewModel
 
 const val COUNT_STATE_KEY = "COUNT_STATE_KEY"
 class MainViewModel(

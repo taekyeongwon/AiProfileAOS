@@ -1,4 +1,4 @@
-package com.example.aiprofileaos.screen.main
+package com.example.aiprofileaos.data.local
 
 interface MainModel {
 }

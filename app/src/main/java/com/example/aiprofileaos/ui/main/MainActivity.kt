@@ -1,15 +1,10 @@
-package com.example.aiprofileaos.screen.main
+package com.example.aiprofileaos.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.example.aiprofileaos.R
 import com.example.aiprofileaos.core.factory.ViewModelFactory
 import com.example.aiprofileaos.core.util.setOnSingleClickListener
 import com.example.aiprofileaos.databinding.ActivityMainBinding
-import com.example.aiprofileaos.screen.base.BaseView
+import com.example.aiprofileaos.ui.base.BaseView
 
 class MainActivity : BaseView<MainViewModel>() {
     override val viewModel: MainViewModel by viewModels { ViewModelFactory }
