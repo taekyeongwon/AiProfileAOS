@@ -1,15 +1,15 @@
 package com.example.aiprofileaos
 
+import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Process
 import android.util.Log
-import androidx.multidex.MultiDexApplication
 import java.io.PrintWriter
 import java.io.StringWriter
 import kotlin.system.exitProcess
 
-class MainApplication: MultiDexApplication() {
+class MainApplication: Application() {
     companion object {
         var sharedPref: SharedPreferences? = null
     }
