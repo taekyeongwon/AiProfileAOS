@@ -60,4 +60,7 @@ dependencies {
 
     //multidex
     implementation 'androidx.multidex:multidex:2.0.1'
+
+    //liveData builder
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
 }

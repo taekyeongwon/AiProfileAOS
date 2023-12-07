@@ -1,5 +1,6 @@
 package com.example.aiprofileaos.ui.main
 
+import android.util.Log
 import androidx.activity.viewModels
 import com.example.aiprofileaos.core.factory.ViewModelFactory
 import com.example.aiprofileaos.core.util.setOnSingleClickListener
@@ -17,7 +18,12 @@ class MainActivity : BaseView<MainViewModel>() {
     }
 
     override fun initObserver() {
-        viewModel.count.observe(this) {
+//        viewModel.count.observe(this) {
+//            Log.d("Test", "receive")
+//            binding.tvLivedata.text = "$it"
+//        }
+        viewModel.test.observe(this) {
+            Log.d("Test", "receive")
             binding.tvLivedata.text = "$it"
         }
     }

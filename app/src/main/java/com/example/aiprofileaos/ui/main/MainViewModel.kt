@@ -4,8 +4,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.example.aiprofileaos.data.local.MainModel
 import com.example.aiprofileaos.ui.base.BaseViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 const val COUNT_STATE_KEY = "COUNT_STATE_KEY"
 class MainViewModel(
@@ -15,6 +20,11 @@ class MainViewModel(
 
     private val _count = MutableLiveData<Int>()
     val count: LiveData<Int> get() = _count
+
+    val test: LiveData<Int> get() = liveData(Dispatchers.IO) {
+        delay(10000)
+        emit(100)
+    }
 
     init {
         Log.d("test", "init")
