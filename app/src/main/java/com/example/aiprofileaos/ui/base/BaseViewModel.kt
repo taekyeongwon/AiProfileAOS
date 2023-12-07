@@ -8,10 +8,7 @@ import io.reactivex.disposables.Disposable
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 
-abstract class BaseViewModel: ViewModel() {
-    protected val _progressFlag = MutableLiveData<Boolean>()
-    val progressFlag: LiveData<Boolean> get() = _progressFlag
-
+abstract class BaseViewModel: ViewModel() { //onClear에서 한번에 해제 시켜 주는 경우 사용
     //rx single 사용 시 subscribe()로 리턴된 Disposable 객체를 라이프사이클에 맞춰 종료될 때 한 번에 해제시켜 주기 위한 객체(메모리 누수 방지)
     private val compositeDisposable = CompositeDisposable()
 

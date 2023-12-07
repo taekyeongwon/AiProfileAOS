@@ -1,6 +1,6 @@
 package com.example.aiprofileaos.core.network
 
-import androidx.multidex.BuildConfig
+import com.example.aiprofileaos.BuildConfig
 import com.example.aiprofileaos.core.network.base.BaseNetwork
 import com.example.aiprofileaos.core.network.base.NetResult
 import com.example.aiprofileaos.core.network.base.NetResultCallback
@@ -33,7 +33,7 @@ object MainApiServer: BaseNetwork<Retrofit>() {
         }.build()
 
         return Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl("http://api.github.com")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -44,16 +44,16 @@ object MainApiServer: BaseNetwork<Retrofit>() {
     @Suppress("UNCHECKED_CAST")
     override suspend fun <V : ServerResult> parsingCoroutine(call: suspend () -> Any): NetResult<V> {
         return try {
-            val response = call.invoke() as? Response<V>
+            val response = call() as? Response<V>
                 ?: throw AssertionError("호출된 api의 return type은 반드시 BaseResponse의 자식 클래스여야 함.")
             if (response.isSuccessful) {  //200 ok
                 val base = response.body() as ServerResult
-                if (base.isSuccess()) NetResult.success(response.body()) //정상 응답
-                else NetResult.error(AppError.Server(base))             //resultCode가 0이 아님
-            } else NetResult.error(AppError.Network(response.code()))   //200 외 서버 통신 에러
+                if (base.isSuccess()) NetResult.Success(response.body()) //정상 응답
+                else NetResult.Error(AppError.Server(base))             //resultCode가 0이 아님
+            } else NetResult.Error(AppError.Network(response.code()))   //200 외 서버 통신 에러
         } catch (e: Exception) {
             e.printStackTrace()
-            NetResult.error(AppError.Network(-1))    //네트워크 통신 실패, 인터넷 연결x 등 에러 처리
+            NetResult.Error(AppError.Network(-1))    //네트워크 통신 실패, 인터넷 연결x 등 에러 처리
         }
     }
 
