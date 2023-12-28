@@ -1,4 +1,4 @@
-package com.example.aiprofileaos.data.dto
+package com.example.aiprofileaos.data.model
 
 import com.example.aiprofileaos.core.network.base.ServerResult
 

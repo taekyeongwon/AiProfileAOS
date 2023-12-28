@@ -3,7 +3,7 @@ package com.example.aiprofileaos.ui.main
 import android.util.Log
 import androidx.activity.viewModels
 import com.example.aiprofileaos.core.factory.ViewModelFactory
-import com.example.aiprofileaos.core.network.base.NetResult
+import com.example.aiprofileaos.core.network.base.ApiResult
 import com.example.aiprofileaos.core.util.setOnSingleClickListener
 import com.example.aiprofileaos.databinding.ActivityMainBinding
 import com.example.aiprofileaos.ui.base.BaseView
@@ -30,18 +30,7 @@ class MainActivity : BaseView<MainViewModel>() {
 //        }
         viewModel.repoData.observe(this) {
             showProgress(false)
-            when(it) {
-                is NetResult.Success -> {
-                    binding.tvLivedata.text = it.data?.items?.get(0)?.name ?: "test"
-                }
-                is NetResult.Error -> {
-                    Log.d("error", it.throwable?.getMessage(this) ?: "error")
-                }
-                is NetResult.Loading -> {
-                    showProgress(true)
-                }
-            }
-
+            binding.tvLivedata.text = it.items?.get(0)?.name ?: "test"
         }
     }
 

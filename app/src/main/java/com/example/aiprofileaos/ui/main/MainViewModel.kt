@@ -7,24 +7,24 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import com.example.aiprofileaos.core.network.base.NetResult
-import com.example.aiprofileaos.data.dto.GithubRepos
-import com.example.aiprofileaos.data.local.MainModel
+import com.example.aiprofileaos.core.network.base.ApiResult
+import com.example.aiprofileaos.data.model.GithubRepos
+import com.example.aiprofileaos.data.remote.MainRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 const val COUNT_STATE_KEY = "COUNT_STATE_KEY"
 class MainViewModel(
-    private val model: MainModel,   //추후 local datasource 접근하는 코드 추가 시 Repository 패턴으로 변경.
+    private val model: MainRepository,
     private val savedStateHandle: SavedStateHandle
     ): ViewModel() {
 
     private val _count = MutableLiveData<Int>()
     val count: LiveData<Int> get() = _count
 
-    private val _repoData = MutableLiveData<NetResult<GithubRepos>>()
-    val repoData: LiveData<NetResult<GithubRepos>> get() = _repoData
+    private val _repoData = MutableLiveData<GithubRepos>()
+    val repoData: LiveData<GithubRepos> get() = _repoData
 
     val test: LiveData<Int> get() = liveData(Dispatchers.IO) {
         delay(10000)
@@ -43,8 +43,14 @@ class MainViewModel(
 
     fun getRepos(query: String) {
         viewModelScope.launch {
-            _repoData.value = NetResult.Loading()
-            _repoData.value = model.getRepos(query)
+            when(val result = model.getRepos(query)) {
+                is ApiResult.Success -> {
+                    _repoData.value = result.data
+                }
+                is ApiResult.Error -> {
+
+                }
+            }
         }
     }
 }
